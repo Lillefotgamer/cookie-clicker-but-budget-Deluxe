@@ -2,7 +2,8 @@
     "name": "Cookie Clicker But Budget 𝓓𝓮𝓵𝓾𝔁𝓮",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "BetterSettings": "github:sargedev/bettersettings#2023.5.1"
     },
     "files": [
         "main.blocks",
