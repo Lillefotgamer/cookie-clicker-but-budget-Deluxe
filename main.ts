@@ -1,20 +1,25 @@
+namespace SpriteKind {
+    export const BigCookie = SpriteKind.create()
+}
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     blockSettings.clear()
     game.reset()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    CookieAmount += 1
+    if (Mouse.overlapsWith(BigCookie)) {
+        CookieAmount += CookieWorth
+        CookieCounter.setText("" + CookieAmount + " ")
+    }
+    AClickDetect()
 })
-let CookieAmount = 0
-if (blockSettings.exists("CookieAmountSetting")) {
-    info.setScore(blockSettings.readNumber("CookieAmountSetting"))
-} else {
-    game.showLongText("Hello it looks like your new here so I will teach you the basics", DialogLayout.Bottom)
-    game.showLongText("Click the big cookie to get cookies", DialogLayout.Bottom)
-    game.showLongText("Which you can use to buy upgrades", DialogLayout.Bottom)
-    game.showLongText("We will talk again when you rebirth for the first time", DialogLayout.Bottom)
-    game.showLongText("Bye", DialogLayout.Bottom)
+function AClickDetect () {
+	
 }
+let CookieWorth = 0
+let CookieCounter: TextSprite = null
+let Mouse: Sprite = null
+let BigCookie: Sprite = null
+let CookieAmount = 0
 scene.setBackgroundImage(img`
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
@@ -137,7 +142,76 @@ scene.setBackgroundImage(img`
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     `)
+if (blockSettings.exists("CookieAmountSetting")) {
+    CookieAmount = blockSettings.readNumber("CookieAmountSetting")
+} else {
+    game.showLongText("Hello it looks like your new here so I will teach you the basics", DialogLayout.Bottom)
+    game.showLongText("Click the big cookie to get cookies", DialogLayout.Bottom)
+    game.showLongText("Which you can use to buy upgrades", DialogLayout.Bottom)
+    game.showLongText("We will talk again when you rebirth for the first time", DialogLayout.Bottom)
+    game.showLongText("Bye", DialogLayout.Bottom)
+}
+BigCookie = sprites.create(img`
+    . . . . . 7 7 7 7 7 7 . . . . . 
+    . . . 7 7 4 4 4 4 4 4 7 7 . . . 
+    . . 7 4 4 4 4 4 7 4 4 4 4 7 . . 
+    . 7 4 4 4 4 4 4 4 4 4 4 4 4 7 . 
+    . 7 4 4 4 4 7 4 4 4 4 7 7 4 7 . 
+    7 4 4 4 4 7 7 7 4 4 4 7 7 4 4 7 
+    7 4 7 4 4 7 7 4 4 4 4 7 4 4 4 7 
+    7 4 4 4 4 4 4 4 4 4 4 4 4 4 4 7 
+    7 4 4 4 4 4 4 4 4 4 4 4 4 7 4 7 
+    7 4 4 7 7 4 4 4 4 4 4 4 4 4 4 7 
+    7 4 4 7 4 4 4 4 7 7 4 4 4 4 4 7 
+    . 7 4 4 4 4 4 4 7 7 4 4 4 4 7 . 
+    . 7 4 4 4 7 4 4 4 4 4 4 9 9 7 . 
+    . . 7 4 4 4 4 4 4 4 9 9 9 7 . . 
+    . . . 7 7 9 9 9 9 9 9 7 7 . . . 
+    . . . . . 7 7 7 7 7 7 . . . . . 
+    `, SpriteKind.BigCookie)
+BigCookie.changeScale(3, ScaleAnchor.Middle)
+Mouse = sprites.create(img`
+    1 1 1 . 1 . . . . 1 1 . . . 1 1 
+    1 . 1 . 1 . . . 1 . . 1 . 1 . . 
+    1 1 1 . 1 . . . 1 1 1 1 . 1 . . 
+    1 . . . 1 1 1 . 1 . . 1 . . 1 1 
+    . . . . . . . . . . . . . . . . 
+    1 1 1 . 1 . 1 . . 1 1 . . 1 . . 
+    1 . . . 1 . 1 . 1 . . 1 . 1 . . 
+    1 1 . . 1 1 1 . 1 . . 1 . 1 . . 
+    1 . . . 1 . 1 . 1 . . 1 . 1 . . 
+    1 1 1 . 1 . 1 . . 1 1 . . 1 1 1 
+    . . . . . . . . . . . . . . . . 
+    1 1 . . 1 1 1 . 1 1 1 . . . . . 
+    1 . 1 . 1 . . . 1 . . 1 . . . . 
+    1 . 1 . 1 1 1 . 1 . . 1 . . . . 
+    1 . 1 . 1 . . . 1 1 1 . . . . . 
+    1 1 . . 1 1 1 . 1 . . 1 . . . . 
+    `, SpriteKind.Player)
+controller.moveSprite(Mouse)
+Mouse.setStayInScreen(true)
+CookieCounter = textsprite.create("0", 0, 7)
+CookieWorth = 1
+CookieCounter.setIcon(img`
+    . . . . . 7 7 7 7 7 7 . . . . . 
+    . . . 7 7 4 4 4 4 4 4 7 7 . . . 
+    . . 7 4 4 4 4 4 7 4 4 4 4 7 . . 
+    . 7 4 4 4 4 4 4 4 4 4 4 4 4 7 . 
+    . 7 4 4 4 4 7 4 4 4 4 7 7 4 7 . 
+    7 4 4 4 4 7 7 7 4 4 4 7 7 4 4 7 
+    7 4 7 4 4 7 7 4 4 4 4 7 4 4 4 7 
+    7 4 4 4 4 4 4 4 4 4 4 4 4 4 4 7 
+    7 4 4 4 4 4 4 4 4 4 4 4 4 7 4 7 
+    7 4 4 7 7 4 4 4 4 4 4 4 4 4 4 7 
+    7 4 4 7 4 4 4 4 7 7 4 4 4 4 4 7 
+    . 7 4 4 4 4 4 4 7 7 4 4 4 4 7 . 
+    . 7 4 4 4 7 4 4 4 4 4 4 9 9 7 . 
+    . . 7 4 4 4 4 4 4 4 9 9 9 7 . . 
+    . . . 7 7 9 9 9 9 9 9 7 7 . . . 
+    . . . . . 7 7 7 7 7 7 . . . . . 
+    `)
+CookieCounter.setPosition(14, 10)
+CookieCounter.setText("" + CookieAmount + " ")
 forever(function () {
     blockSettings.writeNumber("CookieAmountSetting", CookieAmount)
-    pause(10)
 })

@@ -3,7 +3,8 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "BetterSettings": "github:sargedev/bettersettings#2023.5.1"
+        "BetterSettings": "github:sargedev/bettersettings#2023.5.1",
+        "arcade-text": "github:microsoft/arcade-text#v1.3.0"
     },
     "files": [
         "main.blocks",
