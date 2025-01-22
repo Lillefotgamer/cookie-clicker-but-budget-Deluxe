@@ -534,16 +534,33 @@ f 7 7 7 7 7 7 7 6 6 6 6 6 6 6 f
 . . . . 7 7 e e e 7 7 . . . . . 
 . . 7 7 e e e e e e e 7 7 . . . 
 . 7 e e 7 7 e e e 7 7 e e 7 . . 
-. 7 9 e e e 7 7 7 e e e 4 7 . . 
-. 7 9 9 9 e e e e e 4 4 4 7 . . 
-. 7 4 9 9 9 9 9 9 4 4 4 8 7 . . 
-. 7 4 4 4 9 9 9 4 4 8 8 8 7 . . 
-. . 7 7 4 8 8 8 8 8 8 7 7 . . . 
+. 7 9 e e e 7 7 7 e e e 9 7 . . 
+. 7 9 9 9 e e e e e 9 9 9 7 . . 
+. 7 8 9 9 9 9 9 9 9 9 9 8 7 . . 
+. 7 8 8 8 9 9 9 9 9 8 8 8 7 . . 
+. . 7 7 8 8 8 8 8 8 8 7 7 . . . 
 . . . . 7 7 8 8 8 7 7 . . . . . 
 . . . . . . 7 7 7 . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`</field><data>{"commentRefs":[],"fieldData":{"img":"rlD4zTc310hq1`9zk[kR"}}</data></shadow></value><value name="kind"><shadow type="spritekind" id="ol1#g~G*GZIB{=2mk3}z" disabled="true"><field name="MEMBER">Player</field></shadow></value></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block><block type="variables_set" id="4lWi%W|OGK$yvL5uhkH/" disabled="true" x="490" y="-310"><field name="VAR" id="QXE$0E~GzwN7oC;.cPrk">mySprite3</field><value name="VALUE"><shadow type="math_number" id="8kj}B1`TwYRFGs9ZNo:u"><field name="NUM">0</field></shadow><block type="spritescreate" id="]izP$C^,NyouYW._%DVK" disabled="true"><value name="img"><shadow type="screen_image_picker" id="(PwPy=ga/g@Kb)JeC$PX" disabled="true"><field name="img">img`
+`</field><data>{"commentRefs":[],"fieldData":{"img":"rlD4zTc310hq1`9zk[kR"}}</data></shadow></value><value name="kind"><shadow type="spritekind" id="ol1#g~G*GZIB{=2mk3}z" disabled="true"><field name="MEMBER">Player</field></shadow></value></block></value><next><block type="variables_set" id="0fnQn_YG=/,g?MCZKOr^" disabled="true"><field name="VAR" id="ShzO+Zr}bcx~G$0Y$!_i">mySprite</field><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id="p9,R?JeAlyCVWzhW5_O`" disabled="true"><value name="img"><shadow type="screen_image_picker" id=";_AH@R0N0HFc2L/[OSG:" disabled="true"><field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . 7 7 7 . . . 7 7 7 . . . 
+. . . 7 4 4 4 7 . 7 4 4 4 7 . . 
+. . 7 4 4 9 4 4 7 4 4 9 4 4 7 . 
+. 7 4 4 9 4 9 4 9 4 9 4 9 4 4 7 
+. 7 4 4 9 4 9 4 9 4 9 4 9 4 4 7 
+. 7 4 4 9 4 4 4 9 4 4 4 9 4 9 7 
+. . 7 4 4 9 9 4 9 4 9 9 4 4 7 . 
+. . 7 4 4 4 4 9 9 9 4 4 4 9 7 . 
+. . . 7 4 4 4 4 4 4 4 9 9 7 . . 
+. . . . 7 7 4 9 9 9 9 7 7 . . . 
+. . . . . . 7 7 7 7 7 . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`</field><data>{"commentRefs":[],"fieldData":{"img":";_AH@R0N0HFc2L/[OSG:"}}</data></shadow></value><value name="kind"><shadow type="spritekind" id="xiS!]`9M:Dos;1P|ueZR" disabled="true"><field name="MEMBER">Player</field></shadow></value></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block><block type="variables_set" id="4lWi%W|OGK$yvL5uhkH/" disabled="true" x="490" y="-310"><field name="VAR" id="QXE$0E~GzwN7oC;.cPrk">mySprite3</field><value name="VALUE"><shadow type="math_number" id="8kj}B1`TwYRFGs9ZNo:u"><field name="NUM">0</field></shadow><block type="spritescreate" id="]izP$C^,NyouYW._%DVK" disabled="true"><value name="img"><shadow type="screen_image_picker" id="(PwPy=ga/g@Kb)JeC$PX" disabled="true"><field name="img">img`
 . . . . . . . . 
 . . . . . . . . 
 . . . . . . . . 
