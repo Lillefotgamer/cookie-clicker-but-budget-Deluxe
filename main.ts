@@ -15,9 +15,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 function AClickDetect () {
 	
 }
+let Mouse: Sprite = null
 let CookieWorth = 0
 let CookieCounter: TextSprite = null
-let Mouse: Sprite = null
 let BigCookie: Sprite = null
 let CookieAmount = 0
 scene.setBackgroundImage(img`
@@ -170,26 +170,6 @@ BigCookie = sprites.create(img`
     . . . . . 7 7 7 7 7 7 . . . . . 
     `, SpriteKind.BigCookie)
 BigCookie.changeScale(3, ScaleAnchor.Middle)
-Mouse = sprites.create(img`
-    1 1 1 . 1 . . . . 1 1 . . . 1 1 
-    1 . 1 . 1 . . . 1 . . 1 . 1 . . 
-    1 1 1 . 1 . . . 1 1 1 1 . 1 . . 
-    1 . . . 1 1 1 . 1 . . 1 . . 1 1 
-    . . . . . . . . . . . . . . . . 
-    1 1 1 . 1 . 1 . . 1 1 . . 1 . . 
-    1 . . . 1 . 1 . 1 . . 1 . 1 . . 
-    1 1 . . 1 1 1 . 1 . . 1 . 1 . . 
-    1 . . . 1 . 1 . 1 . . 1 . 1 . . 
-    1 1 1 . 1 . 1 . . 1 1 . . 1 1 1 
-    . . . . . . . . . . . . . . . . 
-    1 1 . . 1 1 1 . 1 1 1 . . . . . 
-    1 . 1 . 1 . . . 1 . . 1 . . . . 
-    1 . 1 . 1 1 1 . 1 . . 1 . . . . 
-    1 . 1 . 1 . . . 1 1 1 . . . . . 
-    1 1 . . 1 1 1 . 1 . . 1 . . . . 
-    `, SpriteKind.Player)
-controller.moveSprite(Mouse)
-Mouse.setStayInScreen(true)
 CookieCounter = textsprite.create("0", 0, 7)
 CookieWorth = 1
 CookieCounter.setIcon(img`
@@ -211,7 +191,27 @@ CookieCounter.setIcon(img`
     . . . . . 7 7 7 7 7 7 . . . . . 
     `)
 CookieCounter.setPosition(14, 10)
-CookieCounter.setText("" + CookieAmount + " ")
+CookieCounter.setText("" + CookieAmount)
+Mouse = sprites.create(img`
+    1 1 1 . 1 . . . . 1 1 . . . 1 1 
+    1 . 1 . 1 . . . 1 . . 1 . 1 . . 
+    1 1 1 . 1 . . . 1 1 1 1 . 1 . . 
+    1 . . . 1 1 1 . 1 . . 1 . . 1 1 
+    . . . . . . . . . . . . . . . . 
+    1 1 1 . 1 . 1 . . 1 1 . . 1 . . 
+    1 . . . 1 . 1 . 1 . . 1 . 1 . . 
+    1 1 . . 1 1 1 . 1 . . 1 . 1 . . 
+    1 . . . 1 . 1 . 1 . . 1 . 1 . . 
+    1 1 1 . 1 . 1 . . 1 1 . . 1 1 1 
+    . . . . . . . . . . . . . . . . 
+    1 1 . . 1 1 1 . 1 1 1 . . . . . 
+    1 . 1 . 1 . . . 1 . . 1 . . . . 
+    1 . 1 . 1 1 1 . 1 . . 1 . . . . 
+    1 . 1 . 1 . . . 1 1 1 . . . . . 
+    1 1 . . 1 1 1 . 1 . . 1 . . . . 
+    `, SpriteKind.Player)
+controller.moveSprite(Mouse)
+Mouse.setStayInScreen(true)
 forever(function () {
     blockSettings.writeNumber("CookieAmountSetting", CookieAmount)
 })
