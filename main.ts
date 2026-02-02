@@ -1212,12 +1212,18 @@ function AClickDetect () {
     }
 }
 browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Released, function (x, y) {
-    blockSettings.writeNumber("CameraAdjustedX", (x + scene.cameraProperty(CameraProperty.X) - scene.screenWidth()) / 2)
-    blockSettings.writeNumber("CameraAdjustedY", (y + scene.cameraProperty(CameraProperty.Y) - scene.screenHeight()) / 2)
-    if (blockSettings.readNumber("CameraAdjustedX") <= BigCookie2.right && blockSettings.readNumber("CameraAdjustedX") >= BigCookie2.left && (blockSettings.readNumber("CameraAdjustedY") <= BigCookie2.bottom && blockSettings.readNumber("CameraAdjustedY") >= BigCookie2.top)) {
-        Mouse2.setPosition(x, y)
-        CookieClicked()
+    if (blockSettings.readBoolean("VBossA") == true) {
+        ProjectileValen = sprites.create(img`
+            f f 
+            f f 
+            f f 
+            `, SpriteKind.PlayerProjectile)
+        ProjectileValen.setPosition(Mouse2.x, Mouse2.y)
+        ProjectileValen.setFlag(SpriteFlag.DestroyOnWall, true)
+        ProjectileValen.vy = -100
     }
+    Mouse2.setPosition(x, y)
+    CookieClicked()
 })
 function LoadSave () {
     if (blockSettings.exists("CookieAmountSetting")) {
