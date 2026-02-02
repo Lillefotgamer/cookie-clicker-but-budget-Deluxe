@@ -1151,7 +1151,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Settingsicon, function (sprite, 
     }
 })
 browserEvents.onMouseMove(function (x, y) {
-    Mouse2.setPosition(x, y)
+    if (Gameloaded == 1 || blockSettings.readBoolean("VBossA") == true) {
+        Mouse2.setPosition(x, y)
+    }
 })
 function LoadKidPrice () {
     if (KidPrice < 10000) {
@@ -1222,8 +1224,10 @@ browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Released, functio
         ProjectileValen.setFlag(SpriteFlag.DestroyOnWall, true)
         ProjectileValen.vy = -100
     }
-    Mouse2.setPosition(x, y)
-    CookieClicked()
+    if (Gameloaded == 1 || blockSettings.readBoolean("VBossA") == true) {
+        Mouse2.setPosition(x, y)
+        CookieClicked()
+    }
 })
 function LoadSave () {
     if (blockSettings.exists("CookieAmountSetting")) {
@@ -1280,6 +1284,7 @@ function CookieClicked () {
     }
 }
 let Cashing: TextSprite = null
+let HeartAmount = 0
 let HeavenlyChips = 0
 let Code = ""
 let BigCookieSkin = 0
@@ -1290,7 +1295,6 @@ let ValentinesBoss2: Sprite = null
 let BBar: StatusBarSprite = null
 let BossReady = false
 let Gameloaded = 0
-let ValentinesUpgrade: Sprite = null
 let KidMultiplier = 0
 let KidPrice = 0
 let CritChance = 0
@@ -1298,7 +1302,6 @@ let KidAmount = 0
 let BuyKid2: TextSprite = null
 let Mouse2: Sprite = null
 let CookieAmount = 0
-let HeartAmount = 0
 let CookieWorth = 0
 let CookieCounter: TextSprite = null
 let BigCookie2: Sprite = null
@@ -1451,9 +1454,8 @@ BigCookie2.changeScale(3, ScaleAnchor.Middle)
 CookieCounter = textsprite.create("0", 0, 7)
 if (blockSettings.exists("CookieWorth") == false) {
     CookieWorth = 1
-}
-if (blockSettings.exists("HeartAmount") == true) {
-    HeartAmount = blockSettings.readNumber("HeartAmount")
+} else if (blockSettings.exists("CookieWorth") == true) {
+    CookieWorth = blockSettings.readNumber("CookieWorth")
 }
 CookieCounter.setIcon(img`
     . . . . . 7 7 7 7 7 7 . . . . . 
@@ -1604,87 +1606,6 @@ if (KidMultiplier == 0) {
 }
 BuyKid2.setKind(SpriteKind.BuyKid)
 BuyKid2.setFlag(SpriteFlag.Ghost, false)
-if (blockSettings.readBoolean("VBossDefeated") == true && !(blockSettings.readBoolean("VU1G"))) {
-    ValentinesUpgrade = sprites.create(img`
-        d d d d d d d d d d d d d d d d 
-        d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-        d 1 1 1 7 7 7 1 1 7 7 7 1 1 1 d 
-        d 1 1 7 4 4 4 7 7 4 4 4 7 1 1 d 
-        d 1 7 4 4 4 4 4 4 4 7 4 4 7 1 d 
-        d 1 7 4 4 7 7 4 4 4 7 7 4 7 1 d 
-        d 1 7 4 7 7 7 4 4 4 4 4 4 7 1 d 
-        d 1 7 4 4 4 4 4 7 7 4 4 4 7 1 d 
-        d 1 7 4 4 7 7 4 7 7 7 4 4 7 1 d 
-        d 1 1 7 4 4 7 4 4 7 4 4 7 1 1 d 
-        d 1 1 1 7 4 4 4 4 4 4 7 1 1 1 d 
-        d 1 1 1 1 7 4 4 4 4 7 1 1 1 1 d 
-        d 1 1 1 1 1 7 4 4 7 1 1 1 1 1 d 
-        d 1 1 1 1 1 1 7 7 1 1 1 1 1 1 d 
-        d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-        d d d d d d d d d d d d d d d d 
-        `, SpriteKind.Upgrade)
-    ValentinesUpgrade.setPosition(152, 27)
-} else if (blockSettings.readBoolean("VBossDefeated") == true && (blockSettings.readBoolean("VU1G") == true && !(blockSettings.readBoolean("VU2G")))) {
-    ValentinesUpgrade = sprites.create(img`
-        d d d d d d d d d d d d d d d d 
-        d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-        d 1 1 1 7 7 7 1 1 7 7 7 1 1 1 d 
-        d 1 1 7 e e e 7 7 e e e 7 1 1 d 
-        d 1 7 e e e e e e e 7 e e 7 1 d 
-        d 1 7 e e 7 7 e e e 7 7 e 7 1 d 
-        d 1 7 e 7 7 7 e e e e e e 7 1 d 
-        d 1 7 e e e e e 7 7 e e e 7 1 d 
-        d 1 7 e e 7 7 e 7 7 7 e e 7 1 d 
-        d 1 1 7 e e 7 e e 7 e e 7 1 1 d 
-        d 1 1 1 7 e e e e e e 7 1 1 1 d 
-        d 1 1 1 1 7 e e e e 7 1 1 1 1 d 
-        d 1 1 1 1 1 7 e e 7 1 1 1 1 1 d 
-        d 1 1 1 1 1 1 7 7 1 1 1 1 1 1 d 
-        d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-        d d d d d d d d d d d d d d d d 
-        `, SpriteKind.Upgrade)
-    ValentinesUpgrade.setPosition(152, 27)
-} else if (blockSettings.readBoolean("VBossDefeated") == true && (blockSettings.readBoolean("VU2G") == true && !(blockSettings.readBoolean("VU3G")))) {
-    ValentinesUpgrade = sprites.create(img`
-        d d d d d d d d d d d d d d d d 
-        d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-        d 1 1 1 7 7 7 1 1 7 7 7 1 1 1 d 
-        d 1 1 7 8 8 8 7 7 8 8 8 7 1 1 d 
-        d 1 7 8 8 8 8 8 8 8 7 8 8 7 1 d 
-        d 1 7 8 8 7 7 8 8 8 7 7 8 7 1 d 
-        d 1 7 8 7 7 7 8 8 8 8 8 8 7 1 d 
-        d 1 7 8 8 8 8 8 7 7 8 8 8 7 1 d 
-        d 1 7 8 8 7 7 8 7 7 7 8 8 7 1 d 
-        d 1 1 7 8 8 7 8 8 7 8 8 7 1 1 d 
-        d 1 1 1 7 8 8 8 8 8 8 7 1 1 1 d 
-        d 1 1 1 1 7 8 8 8 8 7 1 1 1 1 d 
-        d 1 1 1 1 1 7 8 8 7 1 1 1 1 1 d 
-        d 1 1 1 1 1 1 7 7 1 1 1 1 1 1 d 
-        d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-        d d d d d d d d d d d d d d d d 
-        `, SpriteKind.Upgrade)
-    ValentinesUpgrade.setPosition(152, 27)
-} else if (blockSettings.readBoolean("VBossDefeated") == true && (blockSettings.readBoolean("VU3G") == true && !(blockSettings.readBoolean("VU4G")))) {
-    ValentinesUpgrade = sprites.create(img`
-        d d d d d d d d d d d d d d d d 
-        d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-        d 1 1 1 7 7 7 1 1 7 7 7 1 1 1 d 
-        d 1 1 7 2 2 2 7 7 2 2 2 7 1 1 d 
-        d 1 7 2 2 1 2 2 2 2 2 2 2 7 1 d 
-        d 1 7 2 1 2 2 2 2 2 2 2 2 7 1 d 
-        d 1 7 2 2 2 2 2 2 2 2 2 2 7 1 d 
-        d 1 7 2 2 2 2 2 2 2 2 2 2 7 1 d 
-        d 1 7 2 2 2 2 2 2 2 2 2 2 7 1 d 
-        d 1 1 7 2 2 2 2 2 2 2 2 7 1 1 d 
-        d 1 1 1 7 2 2 2 2 2 2 7 1 1 1 d 
-        d 1 1 1 1 7 2 2 2 2 7 1 1 1 1 d 
-        d 1 1 1 1 1 7 2 2 7 1 1 1 1 1 d 
-        d 1 1 1 1 1 1 7 7 1 1 1 1 1 1 d 
-        d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-        d d d d d d d d d d d d d d d d 
-        `, SpriteKind.Upgrade)
-    ValentinesUpgrade.setPosition(152, 26)
-}
 timer.background(function () {
     timer.after(1, function () {
         Gameloaded = 1
@@ -1699,113 +1620,6 @@ game.onUpdateInterval(1000, function () {
         Cashing.y += randint(-20, 20)
         Cashing.setFlag(SpriteFlag.GhostThroughWalls, false)
         Cashing.setFlag(SpriteFlag.DestroyOnWall, true)
-    }
-})
-forever(function () {
-    if (Gameloaded == 1) {
-        if (blockSettings.exists("VBossDefeated")) {
-            if (blockSettings.readBoolean("VU4G") == false) {
-                if (Mouse2.overlapsWith(ValentinesUpgrade) && controller.B.isPressed()) {
-                    if (!(blockSettings.readBoolean("VU1G"))) {
-                        if (25 <= HeartAmount) {
-                            HeartAmount += -25
-                            blockSettings.writeBoolean("VU1G", true)
-                            CookieWorth += 1
-                            sprites.destroy(ValentinesUpgrade)
-                            ValentinesUpgrade = sprites.create(img`
-                                d d d d d d d d d d d d d d d d 
-                                d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-                                d 1 1 1 7 7 7 1 1 7 7 7 1 1 1 d 
-                                d 1 1 7 e e e 7 7 e e e 7 1 1 d 
-                                d 1 7 e e e e e e e 7 e e 7 1 d 
-                                d 1 7 e e 7 7 e e e 7 7 e 7 1 d 
-                                d 1 7 e 7 7 7 e e e e e e 7 1 d 
-                                d 1 7 e e e e e 7 7 e e e 7 1 d 
-                                d 1 7 e e 7 7 e 7 7 7 e e 7 1 d 
-                                d 1 1 7 e e 7 e e 7 e e 7 1 1 d 
-                                d 1 1 1 7 e e e e e e 7 1 1 1 d 
-                                d 1 1 1 1 7 e e e e 7 1 1 1 1 d 
-                                d 1 1 1 1 1 7 e e 7 1 1 1 1 1 d 
-                                d 1 1 1 1 1 1 7 7 1 1 1 1 1 1 d 
-                                d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-                                d d d d d d d d d d d d d d d d 
-                                `, SpriteKind.Upgrade)
-                            ValentinesUpgrade.setPosition(152, 27)
-                        } else {
-                            game.showLongText("You need 25 hearts to buy this upgrade you have " + HeartAmount, DialogLayout.Bottom)
-                        }
-                    } else if (blockSettings.readBoolean("VU1G") == true && !(blockSettings.readBoolean("VU2G"))) {
-                        if (50 <= HeartAmount) {
-                            HeartAmount += -50
-                            blockSettings.writeBoolean("VU2G", true)
-                            CritChance += 10
-                            sprites.destroy(ValentinesUpgrade)
-                            ValentinesUpgrade = sprites.create(img`
-                                d d d d d d d d d d d d d d d d 
-                                d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-                                d 1 1 1 7 7 7 1 1 7 7 7 1 1 1 d 
-                                d 1 1 7 8 8 8 7 7 8 8 8 7 1 1 d 
-                                d 1 7 8 8 8 8 8 8 8 7 8 8 7 1 d 
-                                d 1 7 8 8 7 7 8 8 8 7 7 8 7 1 d 
-                                d 1 7 8 7 7 7 8 8 8 8 8 8 7 1 d 
-                                d 1 7 8 8 8 8 8 7 7 8 8 8 7 1 d 
-                                d 1 7 8 8 7 7 8 7 7 7 8 8 7 1 d 
-                                d 1 1 7 8 8 7 8 8 7 8 8 7 1 1 d 
-                                d 1 1 1 7 8 8 8 8 8 8 7 1 1 1 d 
-                                d 1 1 1 1 7 8 8 8 8 7 1 1 1 1 d 
-                                d 1 1 1 1 1 7 8 8 7 1 1 1 1 1 d 
-                                d 1 1 1 1 1 1 7 7 1 1 1 1 1 1 d 
-                                d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-                                d d d d d d d d d d d d d d d d 
-                                `, SpriteKind.Upgrade)
-                            ValentinesUpgrade.setPosition(152, 27)
-                        } else {
-                            game.showLongText("You need 50 hearts to buy this upgrade you have " + HeartAmount, DialogLayout.Bottom)
-                        }
-                    } else if (blockSettings.readBoolean("VU2G") == true && !(blockSettings.readBoolean("VU3G"))) {
-                        if (100 <= HeartAmount) {
-                            HeartAmount += -100
-                            blockSettings.writeBoolean("VU3G", true)
-                            CookieWorth += 2
-                            sprites.destroy(ValentinesUpgrade)
-                            ValentinesUpgrade = sprites.create(img`
-                                d d d d d d d d d d d d d d d d 
-                                d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-                                d 1 1 1 7 7 7 1 1 7 7 7 1 1 1 d 
-                                d 1 1 7 2 2 2 7 7 2 2 2 7 1 1 d 
-                                d 1 7 2 2 1 2 2 2 2 2 2 2 7 1 d 
-                                d 1 7 2 1 2 2 2 2 2 2 2 2 7 1 d 
-                                d 1 7 2 2 2 2 2 2 2 2 2 2 7 1 d 
-                                d 1 7 2 2 2 2 2 2 2 2 2 2 7 1 d 
-                                d 1 7 2 2 2 2 2 2 2 2 2 2 7 1 d 
-                                d 1 1 7 2 2 2 2 2 2 2 2 7 1 1 d 
-                                d 1 1 1 7 2 2 2 2 2 2 7 1 1 1 d 
-                                d 1 1 1 1 7 2 2 2 2 7 1 1 1 1 d 
-                                d 1 1 1 1 1 7 2 2 7 1 1 1 1 1 d 
-                                d 1 1 1 1 1 1 7 7 1 1 1 1 1 1 d 
-                                d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
-                                d d d d d d d d d d d d d d d d 
-                                `, SpriteKind.Upgrade)
-                            ValentinesUpgrade.setPosition(152, 27)
-                        } else {
-                            game.showLongText("You need 100 hearts to buy this upgrade you have " + HeartAmount, DialogLayout.Bottom)
-                        }
-                    } else if (blockSettings.readBoolean("VU3G") == true && !(blockSettings.readBoolean("VU4G"))) {
-                        if (250 <= HeartAmount) {
-                            HeartAmount += -250
-                            blockSettings.writeBoolean("VU4G", true)
-                            CookieWorth += 2
-                            CritChance += 15
-                            sprites.destroy(ValentinesUpgrade)
-                        } else {
-                            game.showLongText("You need 250 hearts to buy this upgrade you have " + HeartAmount, DialogLayout.Bottom)
-                        }
-                        blockSettings.writeNumber("CritChance", CritChance)
-                        blockSettings.writeNumber("CookieWorth", CookieWorth)
-                    }
-                }
-            }
-        }
     }
 })
 forever(function () {
