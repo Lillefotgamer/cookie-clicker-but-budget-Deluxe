@@ -1,13 +1,18 @@
 {
-    "name": "Cookie Clicker But Budget 𝓓𝓮𝓵𝓾𝔁𝓮",
-    "description": "",
+    "name": "Cookie Clicker But Budget 𝓓𝓮𝓵𝓾𝔁𝓮 (cursor?)",
+    "description": "pls help me",
     "dependencies": {
         "device": "*",
         "BetterSettings": "github:sargedev/bettersettings#2023.5.1",
         "arcade-text": "github:microsoft/arcade-text#v1.3.0",
         "arcade-mini-menu": "github:riknoll/arcade-mini-menu#v0.0.1",
         "Timers": "github:microsoft/arcade-timers#v1.1.0",
-        "show-system-menu-block": "pub:17177-58708-11177-59728"
+        "Color Fading": "github:jwunderl/pxt-color#v0.2.3",
+        "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.2",
+        "arcade-sprite-util": "github:jwunderl/arcade-sprite-util#v0.4.1",
+        "browser-events": "*",
+        "tilemaps": "github:microsoft/pxt-tilemaps#v1.12.0",
+        "arcade-tilemap-a-star": "github:jwunderl/arcade-tilemap-a-star#v0.4.0"
     },
     "files": [
         "main.blocks",
@@ -21,7 +26,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "1.12.58",
+        "target": "2.0.63",
         "targetId": "arcade"
     },
     "supportedTargets": [
