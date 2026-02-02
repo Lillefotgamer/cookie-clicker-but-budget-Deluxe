@@ -1304,8 +1304,6 @@ let CookieCounter: TextSprite = null
 let BigCookie2: Sprite = null
 if (blockSettings.readBoolean("VBossA") == true) {
     LoadVBoss()
-} else if (blockSettings.readBoolean("BasementA") == true) {
-    pauseUntil(() => blockSettings.readBoolean("BasementA") == false)
 }
 pauseUntil(() => blockSettings.readBoolean("VBossA") == false)
 scene.setBackgroundImage(img`
