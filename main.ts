@@ -9,6 +9,7 @@ namespace SpriteKind {
     export const Upgrade = SpriteKind.create()
     export const BasementIcon = SpriteKind.create()
     export const Worker = SpriteKind.create()
+    export const BuyCursor = SpriteKind.create()
 }
 // If your tryning to help or just checking code the valentines boss was just a funny inside joke in between me and some friends and the bug comes when u buy a worker and there happens something when u reset the game
 sprites.onOverlap(SpriteKind.PlayerProjectile, SpriteKind.ValentinesBoss, function (sprite, otherSprite) {
@@ -706,6 +707,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.CodeIcon, function (sprite, othe
         if (Code == "Overkill" || (Code == "Valentine" || Code == "Valentines")) {
             blockSettings.writeBoolean("VBossA", true)
             game.reset()
+        } else if (Code == "ClearSave" || Code == "ResetSave") {
+            Clearsave()
         }
     }
 })
@@ -713,17 +716,15 @@ function autosave () {
     blockSettings.writeNumber("CookieAmountSetting", CookieAmount)
     blockSettings.writeNumber("CookieWorth", CookieWorth)
     blockSettings.writeNumber("HeavenlyChips", HeavenlyChips)
+    blockSettings.writeNumber("CritChance", CritChance)
     blockSettings.writeNumber("KidMultiplier", KidMultiplier)
     blockSettings.writeNumber("KidAmount", KidAmount)
     blockSettings.writeNumber("KidPrice", KidPrice)
-    blockSettings.writeNumber("CritChance", CritChance)
+    blockSettings.writeNumber("CursorMultiplier", CursorMultiplier)
+    blockSettings.writeNumber("CursorAmount", CursorAmount)
+    blockSettings.writeNumber("CursorPrice", CursorPrice)
 }
 statusbars.onZero(StatusBarKind.EnemyHealth, function (status) {
-    if (blockSettings.exists("HeartAmount") == true) {
-        HeartAmount = blockSettings.readNumber("HeartAmount")
-    }
-    HeartAmount += randint(5, 15)
-    blockSettings.writeNumber("HeartAmount", HeartAmount)
     blockSettings.writeBoolean("VBossA", false)
     blockSettings.writeBoolean("VBossDefeated", true)
     game.reset()
@@ -741,7 +742,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, ot
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Settingsicon, function (sprite, otherSprite) {
     if (controller.A.isPressed()) {
         BigCookieSkin += 1
-        if (BigCookieSkin == 1) {
+        if (blockSettings.readNumber("BigCookieSkin") == 1) {
             animation.runImageAnimation(
             BigCookie2,
             [img`
@@ -783,7 +784,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Settingsicon, function (sprite, 
                 . . . f f 7 7 7 7 7 7 f f . . . 
                 . . . . . f f f f f f . . . . . 
                 `)
-        } else if (BigCookieSkin == 2) {
+        } else if (blockSettings.readNumber("BigCookieSkin") == 2) {
             animation.runImageAnimation(
             BigCookie2,
             [img`
@@ -825,7 +826,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Settingsicon, function (sprite, 
                 . . . 7 7 d d d d d d 7 7 . . . 
                 . . . . . 7 7 7 7 7 7 . . . . . 
                 `)
-        } else if (BigCookieSkin == 3) {
+        } else if (blockSettings.readNumber("BigCookieSkin") == 3) {
             animation.runImageAnimation(
             BigCookie2,
             [img`
@@ -869,7 +870,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Settingsicon, function (sprite, 
                 . . 7 9 8 8 9 8 8 9 8 8 9 7 . . 
                 . . . 7 7 7 7 7 7 7 7 7 7 . . . 
                 `)
-        } else if (BigCookieSkin == 4) {
+        } else if (blockSettings.readNumber("BigCookieSkin") == 4) {
             animation.runImageAnimation(
             BigCookie2,
             [img`
@@ -913,7 +914,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Settingsicon, function (sprite, 
                 . . f f 7 7 f 7 7 f 7 7 f f . . 
                 . . . f f f f f f f f f f . . . 
                 `)
-        } else if (BigCookieSkin == 5) {
+        } else if (blockSettings.readNumber("BigCookieSkin") == 5) {
             animation.runImageAnimation(
             BigCookie2,
             [img`
@@ -968,7 +969,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Settingsicon, function (sprite, 
                 . . 7 7 . . 
                 `)
             BigCookie2.y += -13
-        } else if (BigCookieSkin == 6) {
+        } else if (blockSettings.readNumber("BigCookieSkin") == 6) {
             animation.runImageAnimation(
             BigCookie2,
             [img`
@@ -1150,6 +1151,23 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Settingsicon, function (sprite, 
         pause(500)
     }
 })
+function LoadCursorPrice () {
+    if (CursorPrice < 10000) {
+        BuyCursor.setText(convertToText(Math.round(CursorPrice)))
+    } else if (CursorPrice < 100000) {
+        BuyCursor.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100) / 10 + "K"))
+    } else if (CursorPrice < 1000000) {
+        BuyCursor.setText(convertToText("" + Math.round(CursorPrice / 1000) + "K"))
+    } else if (CursorPrice < 10000000) {
+        BuyCursor.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100000) / 10 + "M"))
+    } else if (CursorPrice < 100000000) {
+        BuyCursor.setText(convertToText("" + Math.round(CursorPrice / 1000000) + "M"))
+    } else if (CursorPrice < 1000000000) {
+        BuyCursor.setText(convertToText("" + Math.round(CursorPrice / 1000000) + "M"))
+    } else if (CursorPrice < 10000000000) {
+        BuyCursor.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100000000) / 10 + "B"))
+    }
+}
 browserEvents.onMouseMove(function (x, y) {
     if (Gameloaded == 1 || blockSettings.readBoolean("VBossA") == true) {
         Mouse2.setPosition(x, y)
@@ -1202,6 +1220,34 @@ function AClickDetect () {
         } else {
             game.showLongText("This is the max amount of this upgrade you can have", DialogLayout.Bottom)
         }
+        if (!(CursorAmount == 101)) {
+            if (CookieAmount >= CursorPrice && controller.A.isPressed()) {
+                CursorAmount += 1
+                CookieAmount += 0 - Math.round(CursorPrice)
+                CursorPrice += CursorPrice * 0.15
+                blockSettings.writeNumber("HasCursorUpgrade", 1)
+                if (CursorPrice < 10000) {
+                    BuyCursor.setText(convertToText(Math.round(CursorPrice)))
+                } else if (CursorPrice < 100000) {
+                    BuyCursor.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100) / 10 + "K"))
+                } else if (CursorPrice < 1000000) {
+                    BuyCursor.setText(convertToText("" + Math.round(CursorPrice / 1000) + "K"))
+                } else if (CursorPrice < 10000000) {
+                    BuyCursor.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100000) / 10 + "M"))
+                } else if (CursorPrice < 100000000) {
+                    BuyCursor.setText(convertToText("" + Math.round(CursorPrice / 1000000) + "M"))
+                } else if (CursorPrice < 1000000000) {
+                    BuyCursor.setText(convertToText("" + Math.round(CursorPrice / 1000000) + "M"))
+                } else if (CursorPrice < 10000000000) {
+                    BuyCursor.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100000000) / 10 + "B"))
+                }
+                blockSettings.writeNumber("CursorMultiplier", CursorMultiplier)
+                blockSettings.writeNumber("CursorAmount", CursorAmount)
+                blockSettings.writeNumber("CursorPrice", CursorPrice)
+            }
+        } else {
+            game.showLongText("This is the max amount of this upgrade you can have", DialogLayout.Bottom)
+        }
     } else if (blockSettings.readBoolean("VBossA") == true) {
         ProjectileValen = sprites.create(img`
             f f 
@@ -1234,10 +1280,13 @@ function LoadSave () {
         CookieAmount = blockSettings.readNumber("CookieAmountSetting")
         CookieWorth = blockSettings.readNumber("CookieWorth")
         HeavenlyChips = blockSettings.readNumber("HeavenlyChips")
+        CritChance = blockSettings.readNumber("CritChance")
         KidMultiplier = blockSettings.readNumber("KidMultiplier")
         KidAmount = blockSettings.readNumber("KidAmount")
         KidPrice = blockSettings.readNumber("KidPrice")
-        CritChance = blockSettings.readNumber("CritChance")
+        CursorMultiplier = blockSettings.readNumber("CursorMultiplier")
+        CursorAmount = blockSettings.readNumber("CursorAmount")
+        CursorPrice = blockSettings.readNumber("CursorPrice")
     } else {
         game.showLongText("Hello it looks like your new here so I will teach you the basics", DialogLayout.Bottom)
         game.showLongText("Click the big cookie to get cookies", DialogLayout.Bottom)
@@ -1253,7 +1302,7 @@ function CookieClicked () {
                 CookieAmount += 2 * CookieWorth
                 BigCookie2.changeScale(1, ScaleAnchor.Middle)
                 music.play(music.createSoundEffect(WaveShape.Triangle, 300, 200, 255, 0, 65, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
-                Cashing = textsprite.create(convertToText("" + Math.round(2 * CookieWorth)), 0, 2)
+                Cashing = textsprite.create(convertToText("" + Math.round(2 * (CookieWorth + CursorAmount * CursorMultiplier))), 0, 2)
                 Cashing.vy = -50
                 Cashing.x += randint(-20, 20)
                 Cashing.y += randint(-20, 20)
@@ -1268,7 +1317,7 @@ function CookieClicked () {
                 CookieAmount += CookieWorth
                 BigCookie2.changeScale(1, ScaleAnchor.Middle)
                 music.play(music.createSoundEffect(WaveShape.Triangle, 300, 200, 255, 0, 65, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
-                Cashing = textsprite.create("" + Math.round(CookieWorth))
+                Cashing = textsprite.create("" + Math.round(CookieWorth + CursorAmount * CursorMultiplier))
                 Cashing.vy = -50
                 Cashing.x += randint(-20, 20)
                 Cashing.y += randint(-20, 20)
@@ -1284,7 +1333,6 @@ function CookieClicked () {
     }
 }
 let Cashing: TextSprite = null
-let HeartAmount = 0
 let HeavenlyChips = 0
 let Code = ""
 let BigCookieSkin = 0
@@ -1295,10 +1343,14 @@ let ValentinesBoss2: Sprite = null
 let BBar: StatusBarSprite = null
 let BossReady = false
 let Gameloaded = 0
+let CursorMultiplier = 0
 let KidMultiplier = 0
+let CursorPrice = 0
 let KidPrice = 0
 let CritChance = 0
+let CursorAmount = 0
 let KidAmount = 0
+let BuyCursor: TextSprite = null
 let BuyKid2: TextSprite = null
 let Mouse2: Sprite = null
 let CookieAmount = 0
@@ -1581,7 +1633,7 @@ BuyKid2.setIcon(img`
     . . . . . d d d . d d d . . . . 
     `)
 BuyKid2.setPosition(13, 30)
-let BuyCursor = textsprite.create("0")
+BuyCursor = textsprite.create("0")
 BuyCursor.setIcon(img`
     . . . . . 7 7 . . . . . . . . . 
     . . . . 7 4 7 . . . . . . . . . 
@@ -1607,6 +1659,12 @@ if (blockSettings.exists("KidAmount")) {
     blockSettings.writeNumber("KidAmount", 0)
     KidAmount = 0
 }
+if (blockSettings.exists("CursorAmount")) {
+    CursorAmount = blockSettings.readNumber("CursorAmount")
+} else {
+    blockSettings.writeNumber("CursorAmount", 0)
+    CursorAmount = 0
+}
 if (blockSettings.exists("CritChance")) {
     CritChance = blockSettings.readNumber("CritChance")
 } else {
@@ -1621,11 +1679,24 @@ if (KidPrice == 100) {
 } else {
     LoadKidPrice()
 }
+if (CursorPrice == 0) {
+    CursorPrice = 250
+}
+if (CursorPrice == 250) {
+    BuyCursor.setText(convertToText(Math.round(CursorPrice)))
+} else {
+    LoadCursorPrice()
+}
 if (KidMultiplier == 0) {
     KidMultiplier = 1
 }
+if (CursorMultiplier == 0) {
+    CursorMultiplier = 1
+}
 BuyKid2.setKind(SpriteKind.BuyKid)
 BuyKid2.setFlag(SpriteFlag.Ghost, false)
+BuyCursor.setKind(SpriteKind.BuyCursor)
+BuyCursor.setFlag(SpriteFlag.Ghost, false)
 timer.background(function () {
     timer.after(1, function () {
         Gameloaded = 1
