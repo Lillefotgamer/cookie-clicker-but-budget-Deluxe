@@ -452,22 +452,22 @@ function LoadSkins () {
         false
         )
         CookieCounter.setIcon(img`
-            . . . . . 7 7 7 7 7 7 . . . . . 
-            . . . 7 7 e e e e e e 7 7 . . . 
-            . . 7 e e e e e 7 e e e e 7 . . 
-            . 7 e e e e e e e e e e e e 7 . 
-            . 7 e e e e 7 e e e e 7 7 e 7 . 
-            7 e e e e 7 7 7 e e e 7 7 e e 7 
-            7 e 7 e e 7 7 e e e e 7 e e e 7 
-            7 e e e e e e e e e e e e e e 7 
-            7 e e e e e e e e e e e e 7 e 7 
-            7 e e 7 7 e e e e e e e e e e 7 
-            7 e e 7 e e e e 7 7 e e e e e 7 
-            . 7 e e e e e e 7 7 e e e e 7 . 
-            . 7 e e e 7 e e e e e e e e 7 . 
-            . . 7 e e e e e e e e e e 7 . . 
-            . . . 7 7 e e e e e e 7 7 . . . 
-            . . . . . 7 7 7 7 7 7 . . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e e e f f . . . 
+            . . f e e e e e 7 e e e e f . . 
+            . f e e e e e e e e e e e e f . 
+            . f e e e e 7 e e e e 7 7 e f . 
+            f e e e e 7 7 7 e e e 7 7 e e f 
+            f e 7 e e 7 7 e e e e 7 e e e f 
+            f e e e e e e e e e e e e e e f 
+            f e e e e e e e e e e e e 7 e f 
+            f e e 7 7 e e e e e e e e e e f 
+            f e e 7 e e e e 7 7 e e e e e f 
+            . f e e e e e e 7 7 e e e e f . 
+            . f e e e 7 e e e e e e 7 7 f . 
+            . . f e e e e e e e 7 7 7 f . . 
+            . . . f f 7 7 7 7 7 7 f f . . . 
+            . . . . . f f f f f f . . . . . 
             `)
     } else if (blockSettings.readNumber("BigCookieSkin") == 2) {
         animation.runImageAnimation(
@@ -766,22 +766,22 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Settingsicon, function (sprite, 
             false
             )
             CookieCounter.setIcon(img`
-                . . . . . 7 7 7 7 7 7 . . . . . 
-                . . . 7 7 e e e e e e 7 7 . . . 
-                . . 7 e e e e e 7 e e e e 7 . . 
-                . 7 e e e e e e e e e e e e 7 . 
-                . 7 e e e e 7 e e e e 7 7 e 7 . 
-                7 e e e e 7 7 7 e e e 7 7 e e 7 
-                7 e 7 e e 7 7 e e e e 7 e e e 7 
-                7 e e e e e e e e e e e e e e 7 
-                7 e e e e e e e e e e e e 7 e 7 
-                7 e e 7 7 e e e e e e e e e e 7 
-                7 e e 7 e e e e 7 7 e e e e e 7 
-                . 7 e e e e e e 7 7 e e e e 7 . 
-                . 7 e e e 7 e e e e e e e e 7 . 
-                . . 7 e e e e e e e e e e 7 . . 
-                . . . 7 7 e e e e e e 7 7 . . . 
-                . . . . . 7 7 7 7 7 7 . . . . . 
+                . . . . . f f f f f f . . . . . 
+                . . . f f e e e e e e f f . . . 
+                . . f e e e e e 7 e e e e f . . 
+                . f e e e e e e e e e e e e f . 
+                . f e e e e 7 e e e e 7 7 e f . 
+                f e e e e 7 7 7 e e e 7 7 e e f 
+                f e 7 e e 7 7 e e e e 7 e e e f 
+                f e e e e e e e e e e e e e e f 
+                f e e e e e e e e e e e e 7 e f 
+                f e e 7 7 e e e e e e e e e e f 
+                f e e 7 e e e e 7 7 e e e e e f 
+                . f e e e e e e 7 7 e e e e f . 
+                . f e e e 7 e e e e e e 7 7 f . 
+                . . f e e e e e e e 7 7 7 f . . 
+                . . . f f 7 7 7 7 7 7 f f . . . 
+                . . . . . f f f f f f . . . . . 
                 `)
         } else if (BigCookieSkin == 2) {
             animation.runImageAnimation(
