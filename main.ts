@@ -1581,6 +1581,26 @@ BuyKid2.setIcon(img`
     . . . . . d d d . d d d . . . . 
     `)
 BuyKid2.setPosition(13, 30)
+let BuyCursor = textsprite.create("0")
+BuyCursor.setIcon(img`
+    . . . . . 7 7 . . . . . . . . . 
+    . . . . 7 4 7 . . . . . . . . . 
+    . . . 7 4 4 7 . . . . . . . . . 
+    . . 7 4 4 4 7 . . . . 1 1 . . . 
+    . 7 4 4 4 4 7 . . . . . 1 . . . 
+    7 9 4 4 4 4 7 . . . . 1 . . . . 
+    7 7 7 4 4 4 7 . . . . 1 1 . . . 
+    . 7 4 4 7 9 7 . . . . . . . . . 
+    . 7 4 9 7 7 7 . . . 7 7 7 7 . . 
+    . . 7 7 . . . . . 7 4 4 4 4 7 . 
+    . . . . . . . . 7 4 4 7 4 4 4 7 
+    . . . . . . . . 7 4 4 4 4 7 4 7 
+    . . . . . . . . 7 4 7 4 4 4 4 7 
+    . . . . . . . . 7 4 4 4 4 9 9 7 
+    . . . . . . . . . 7 9 9 9 9 7 . 
+    . . . . . . . . . . 7 7 7 7 . . 
+    `)
+BuyCursor.setPosition(13, 50)
 if (blockSettings.exists("KidAmount")) {
     KidAmount = blockSettings.readNumber("KidAmount")
 } else {
