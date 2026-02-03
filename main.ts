@@ -1302,7 +1302,7 @@ function CookieClicked () {
     if (Gameloaded == 1) {
         if (Mouse2.overlapsWith(BigCookie2)) {
             if (Math.percentChance(CritChance)) {
-                CookieAmount += 2 * CookieWorth
+                CookieAmount += 2 * (CookieWorth + CursorAmount * CursorMultiplier)
                 BigCookie2.changeScale(1, ScaleAnchor.Middle)
                 music.play(music.createSoundEffect(WaveShape.Triangle, 300, 200, 255, 0, 65, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
                 Cashing = textsprite.create(convertToText("" + Math.round(2 * (CookieWorth + CursorAmount * CursorMultiplier))), 0, 2)
@@ -1317,7 +1317,7 @@ function CookieClicked () {
                     })
                 })
             } else {
-                CookieAmount += CookieWorth
+                CookieAmount += CookieWorth + CursorAmount * CursorMultiplier
                 BigCookie2.changeScale(1, ScaleAnchor.Middle)
                 music.play(music.createSoundEffect(WaveShape.Triangle, 300, 200, 255, 0, 65, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
                 Cashing = textsprite.create("" + Math.round(CookieWorth + CursorAmount * CursorMultiplier))
