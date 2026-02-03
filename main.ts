@@ -1153,19 +1153,19 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Settingsicon, function (sprite, 
 })
 function LoadCursorPrice () {
     if (CursorPrice < 10000) {
-        BuyCursor.setText(convertToText(Math.round(CursorPrice)))
+        BuyCursor2.setText(convertToText(Math.round(CursorPrice)))
     } else if (CursorPrice < 100000) {
-        BuyCursor.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100) / 10 + "K"))
+        BuyCursor2.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100) / 10 + "K"))
     } else if (CursorPrice < 1000000) {
-        BuyCursor.setText(convertToText("" + Math.round(CursorPrice / 1000) + "K"))
+        BuyCursor2.setText(convertToText("" + Math.round(CursorPrice / 1000) + "K"))
     } else if (CursorPrice < 10000000) {
-        BuyCursor.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100000) / 10 + "M"))
+        BuyCursor2.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100000) / 10 + "M"))
     } else if (CursorPrice < 100000000) {
-        BuyCursor.setText(convertToText("" + Math.round(CursorPrice / 1000000) + "M"))
+        BuyCursor2.setText(convertToText("" + Math.round(CursorPrice / 1000000) + "M"))
     } else if (CursorPrice < 1000000000) {
-        BuyCursor.setText(convertToText("" + Math.round(CursorPrice / 1000000) + "M"))
+        BuyCursor2.setText(convertToText("" + Math.round(CursorPrice / 1000000) + "M"))
     } else if (CursorPrice < 10000000000) {
-        BuyCursor.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100000000) / 10 + "B"))
+        BuyCursor2.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100000000) / 10 + "B"))
     }
 }
 browserEvents.onMouseMove(function (x, y) {
@@ -1220,6 +1220,8 @@ function AClickDetect () {
         } else {
             game.showLongText("This is the max amount of this upgrade you can have", DialogLayout.Bottom)
         }
+    }
+    if (Gameloaded == 1 && Mouse2.overlapsWith(BuyCursor2)) {
         if (!(CursorAmount == 101)) {
             if (CookieAmount >= CursorPrice && controller.A.isPressed()) {
                 CursorAmount += 1
@@ -1227,19 +1229,19 @@ function AClickDetect () {
                 CursorPrice += CursorPrice * 0.15
                 blockSettings.writeNumber("HasCursorUpgrade", 1)
                 if (CursorPrice < 10000) {
-                    BuyCursor.setText(convertToText(Math.round(CursorPrice)))
+                    BuyCursor2.setText(convertToText(Math.round(CursorPrice)))
                 } else if (CursorPrice < 100000) {
-                    BuyCursor.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100) / 10 + "K"))
+                    BuyCursor2.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100) / 10 + "K"))
                 } else if (CursorPrice < 1000000) {
-                    BuyCursor.setText(convertToText("" + Math.round(CursorPrice / 1000) + "K"))
+                    BuyCursor2.setText(convertToText("" + Math.round(CursorPrice / 1000) + "K"))
                 } else if (CursorPrice < 10000000) {
-                    BuyCursor.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100000) / 10 + "M"))
+                    BuyCursor2.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100000) / 10 + "M"))
                 } else if (CursorPrice < 100000000) {
-                    BuyCursor.setText(convertToText("" + Math.round(CursorPrice / 1000000) + "M"))
+                    BuyCursor2.setText(convertToText("" + Math.round(CursorPrice / 1000000) + "M"))
                 } else if (CursorPrice < 1000000000) {
-                    BuyCursor.setText(convertToText("" + Math.round(CursorPrice / 1000000) + "M"))
+                    BuyCursor2.setText(convertToText("" + Math.round(CursorPrice / 1000000) + "M"))
                 } else if (CursorPrice < 10000000000) {
-                    BuyCursor.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100000000) / 10 + "B"))
+                    BuyCursor2.setText(convertToText("" + Math.round(Math.round(CursorPrice) / 100000000) / 10 + "B"))
                 }
                 blockSettings.writeNumber("CursorMultiplier", CursorMultiplier)
                 blockSettings.writeNumber("CursorAmount", CursorAmount)
@@ -1248,7 +1250,8 @@ function AClickDetect () {
         } else {
             game.showLongText("This is the max amount of this upgrade you can have", DialogLayout.Bottom)
         }
-    } else if (blockSettings.readBoolean("VBossA") == true) {
+    }
+    if (blockSettings.readBoolean("VBossA") == true) {
         ProjectileValen = sprites.create(img`
             f f 
             f f 
@@ -1350,7 +1353,7 @@ let KidPrice = 0
 let CritChance = 0
 let CursorAmount = 0
 let KidAmount = 0
-let BuyCursor: TextSprite = null
+let BuyCursor2: TextSprite = null
 let BuyKid2: TextSprite = null
 let Mouse2: Sprite = null
 let CookieAmount = 0
@@ -1633,8 +1636,8 @@ BuyKid2.setIcon(img`
     . . . . . d d d . d d d . . . . 
     `)
 BuyKid2.setPosition(13, 30)
-BuyCursor = textsprite.create("0")
-BuyCursor.setIcon(img`
+BuyCursor2 = textsprite.create("0")
+BuyCursor2.setIcon(img`
     . . . . . 7 7 . . . . . . . . . 
     . . . . 7 4 7 . . . . . . . . . 
     . . . 7 4 4 7 . . . . . . . . . 
@@ -1652,7 +1655,7 @@ BuyCursor.setIcon(img`
     . . . . . . . . . 7 9 9 9 9 7 . 
     . . . . . . . . . . 7 7 7 7 . . 
     `)
-BuyCursor.setPosition(13, 50)
+BuyCursor2.setPosition(13, 50)
 if (blockSettings.exists("KidAmount")) {
     KidAmount = blockSettings.readNumber("KidAmount")
 } else {
@@ -1683,7 +1686,7 @@ if (CursorPrice == 0) {
     CursorPrice = 250
 }
 if (CursorPrice == 250) {
-    BuyCursor.setText(convertToText(Math.round(CursorPrice)))
+    BuyCursor2.setText(convertToText(Math.round(CursorPrice)))
 } else {
     LoadCursorPrice()
 }
@@ -1695,8 +1698,8 @@ if (CursorMultiplier == 0) {
 }
 BuyKid2.setKind(SpriteKind.BuyKid)
 BuyKid2.setFlag(SpriteFlag.Ghost, false)
-BuyCursor.setKind(SpriteKind.BuyCursor)
-BuyCursor.setFlag(SpriteFlag.Ghost, false)
+BuyCursor2.setKind(SpriteKind.BuyCursor)
+BuyCursor2.setFlag(SpriteFlag.Ghost, false)
 timer.background(function () {
     timer.after(1, function () {
         Gameloaded = 1
