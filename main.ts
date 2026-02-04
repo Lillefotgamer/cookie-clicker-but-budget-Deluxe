@@ -1618,22 +1618,22 @@ let CodeIcon2 = sprites.create(img`
 CodeIcon2.setPosition(132, 8)
 BuyKid2 = textsprite.create("0")
 BuyKid2.setIcon(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . d d d . . . . . . 
+    . . . . . . 7 7 7 7 7 . . . . . 
+    . . . . . 7 7 7 7 7 7 7 . . . . 
     . . . . . . d 1 1 1 d . . . . . 
     . . . . . d 1 f 1 f 1 d . . . . 
     . . . . . d 1 1 1 1 1 d . . . . 
     . . . . . d 1 f 1 f 1 d . . . . 
     . . . . . . d 1 f 1 d . . . . . 
-    . . . . . . . d 1 d . . . . . . 
-    . . . . . d d 1 1 1 d d . . . . 
-    . . . . d 1 1 d 1 d 1 1 d . . . 
-    . . . d 1 d d d 1 d d d 1 d . . 
-    . . d 1 d . d 1 1 1 d . d 1 d . 
-    . . d d . . d 1 d 1 d . . d d . 
-    . . . . . d 1 d . d 1 d . . . . 
-    . . . . . d 1 d . d 1 d . . . . 
-    . . . . . d d d . d d d . . . . 
+    . . . . . . . d d d . . . . . . 
+    . . . . . 7 7 6 9 6 7 7 . . . . 
+    . . . . 7 e e 6 9 6 e e 7 . . . 
+    . . . 7 e 7 e e 9 e e 7 e 7 . . 
+    . . d 1 7 . 7 e e e 7 . 7 1 d . 
+    . . d d . . 7 e 7 e 7 . . d d . 
+    . . . . . 7 e e 7 e e 7 . . . . 
+    . . . . . 7 e e 7 e e 7 . . . . 
+    . . . . . 7 7 7 . 7 7 7 . . . . 
     `)
 BuyKid2.setPosition(13, 30)
 BuyCursor2 = textsprite.create("0")
