@@ -11,6 +11,19 @@ namespace SpriteKind {
     export const Worker = SpriteKind.create()
     export const BuyCursor = SpriteKind.create()
 }
+/**
+ * █░█░█ █░█ █ ▀█▀ █▀▀   ▀▀   █▀▀ █▀█ █▀▄▀█ █▀▀ █▀▄ █▄█
+ * 
+ * ▀▄▀▄▀ █▀█ █ ░█░ ██▄   ▀▀   █▄▄ █▄█ █░▀░█ ██▄ █▄▀ ░█░
+ * 
+ * █▀▄ ▄▀█ █▀█ █▄▀   ▀▀   ▀█▀ █▀█ ▄▀█ █▀▀ █▀▀ █▀▄ █▄█
+ * 
+ * █▄▀ █▀█ █▀▄ █░█   ▀▀   ░█░ █▀▄ █▀█ █▄█ ██▄ █▄▀ ░█░
+ * 
+ * █▀█ █▀█ ▄▀█ █▄░█ █▀▀ █▀▀   ▀▀   █▀▄ █▀█ ▄▀█ █▀▄▀█ ▄▀█
+ * 
+ * █▄█ █▀▄ █▀█ █░▀█ █▄█ ██▄   ▀▀   █▄▀ █▀▄ █▀█ █░▀░█ █▀█
+ */
 // If your tryning to help or just checking code the valentines boss was just a funny inside joke in between me and some friends and the bug comes when u buy a worker and there happens something when u reset the game
 sprites.onOverlap(SpriteKind.PlayerProjectile, SpriteKind.ValentinesBoss, function (sprite, otherSprite) {
     if (BossReady == true) {
